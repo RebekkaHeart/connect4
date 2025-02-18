@@ -227,7 +227,18 @@ export class PlayerAi extends Player {
     }
   }
 
+  private randomMove(): number
+  {
+    let move = Math.floor( Math.random()* 7)
+   return move
+  }
+
   async getAction(board: BoardBase): Promise<number> {
+    let firstMove = true
+    if(firstMove){
+      firstMove = false
+      return this.randomMove();
+    }
     const state = clone(board.map)
     const action = this.maxState(
       state,
