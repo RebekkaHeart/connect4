@@ -15,6 +15,9 @@ export class Board extends BoardBase {
     this.initConstants()
     this.reset()
     this.onresize()
+    let storedTimes = localStorage.getItem('times') || '';
+    storedTimes += 'NEWGAME, ';
+    localStorage.setItem('times', storedTimes);
   }
 
   getBoardScale() {

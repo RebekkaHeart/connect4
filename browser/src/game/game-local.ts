@@ -5,6 +5,8 @@ import { Player, PlayerHuman, PlayerAi } from '@kenrick95/c4'
 import { getColumnFromCoord } from '@kenrick95/c4'
 import { showMessage } from '../utils/message'
 import { animationFrame } from '../utils/animate-frame'
+//import * as fs from 'fs';
+
 
 const statusbox = document.querySelector('.statusbox')
 const statusboxBodyGame = document.querySelector('.statusbox-body-game')
@@ -17,6 +19,7 @@ export class GameLocal extends GameBase {
   private startTime: number
   constructor(players: Array<Player>, board: BoardBase) {
     super(players, board)
+    this.startTime = 0;
   }
   beforeMoveApplied() {
     if (statusboxBodyGame) {
@@ -41,9 +44,14 @@ export class GameLocal extends GameBase {
     }
   }
   afterMove() {
+    //const fse = require('fs-extra')
     const endTime = Date.now();
     const totalTime = endTime - this.startTime;
     console.log(`Player ${this.currentPlayerId} took ${totalTime}ms to make a move.`);
+    //fse.writeFileSync('test.txt', totalTime + ", ");
+    let storedTimes = localStorage.getItem('times') || '';
+    storedTimes += totalTime + ', ';
+    localStorage.setItem('times', storedTimes);
   }
 
   announceWinner(winnerBoardPiece: BoardPiece) {
