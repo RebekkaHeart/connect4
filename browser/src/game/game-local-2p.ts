@@ -1,3 +1,5 @@
+/** 
+
 import { BoardPiece } from '@kenrick95/c4'
 import { PlayerHuman } from '@kenrick95/c4'
 import { GameLocal, initGameLocal } from './game-local'
@@ -11,3 +13,5 @@ export function initGameLocal2p(
   const secondPlayer = new PlayerHuman(BoardPiece.PLAYER_2, secondPlayerName)
   return initGameLocal(GameLocal2p, firstPlayer, secondPlayer)
 }
+
+*/

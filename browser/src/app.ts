@@ -93,11 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
       )) {
         const checkboxEl = el as HTMLInputElement
         checkboxEl.readOnly = true
-        if (checkboxEl.value === 'online-human') {
+        /*if (checkboxEl.value === 'online-human') {
           checkboxEl.checked = true
-        } else {
+        }  else {
           checkboxEl.checked = false
-        }
+        }*/
       }
 
       player2NameLabel.textContent = `Your name:`
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
       player2NameInput.classList.add('hidden')
       player1NameInput.disabled = false
       player2NameInput.disabled = true
-    } else if (chosenMode === 'online-human') {
+    } /*else if (chosenMode === 'online-human') {
       player1NameLabel.textContent = `Your name:`
       player2NameLabel.textContent = `Other player's name:`
       player1NameLabel.classList.remove('hidden')
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
       player2NameInput.classList.add('hidden')
       player1NameInput.disabled = false
       player2NameInput.disabled = true
-    } else if (chosenMode === 'ai-vs-ai') {
+    } */ else if (chosenMode === 'ai-vs-ai') {
       player1NameLabel.textContent = `Player's name:`
       player2NameLabel.textContent = `Player's name:`
       player1NameLabel.classList.add('hidden')
@@ -149,22 +149,22 @@ document.addEventListener('DOMContentLoaded', () => {
   function initGame(chosenMode: string | null, playerNames: (string | null)[]) {
     console.log('initGame chosenMode:', chosenMode)
     backToModeSelector?.classList.remove('hidden')
-    if (chosenMode === 'offline-human') {
+    if (chosenMode === 'offline-ai') {
+      currentGameHandler = Game.initGameLocalAi(playerNames[0] || 'Player 1')
+    } /*else if (chosenMode === 'offline-human') {
       currentGameHandler = Game.initGameLocal2p(
         playerNames[0] || 'Player 1',
         playerNames[1] || 'Player 2',
-      )
-    } else if (chosenMode === 'offline-ai') {
-      currentGameHandler = Game.initGameLocalAi(playerNames[0] || 'Player 1')
-    } else if (chosenMode === 'online-human') {
+      )*/
+    /*} else if (chosenMode === 'online-human') {
       currentGameHandler = Game.initGameOnline2p(
         connectionMatchId
           ? playerNames[1] || 'Player 2'
           : playerNames[0] || 'Player 1',
       )
-    } else if (chosenMode === 'ai-vs-ai') {
+    }*/ /*else if (chosenMode === 'ai-vs-ai') {
       currentGameHandler = Game.initGameAiVsAi()
-    } else {
+  } */ else {
       console.error('Invalid game mode received', chosenMode)
     }
   }

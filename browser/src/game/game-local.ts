@@ -14,6 +14,7 @@ const statusboxBodyConnection = document.querySelector(
 const statusboxBodyPlayer = document.querySelector('.statusbox-body-player')
 
 export class GameLocal extends GameBase {
+  private startTime: number
   constructor(players: Array<Player>, board: BoardBase) {
     super(players, board)
   }
@@ -24,6 +25,7 @@ export class GameLocal extends GameBase {
     }
   }
   waitingForMove() {
+    this.startTime = Date.now();
     if (!this.isMoveAllowed || this.isGameWon) {
       return
     }
@@ -39,7 +41,9 @@ export class GameLocal extends GameBase {
     }
   }
   afterMove() {
-    // no-op
+    const endTime = Date.now();
+    const totalTime = endTime - this.startTime;
+    console.log(`Player ${this.currentPlayerId} took ${totalTime}ms to make a move.`);
   }
 
   announceWinner(winnerBoardPiece: BoardPiece) {

@@ -1,3 +1,4 @@
+/** 
 import { Board } from '../board'
 import { BoardBase, BoardPiece } from '@kenrick95/c4'
 import {
@@ -304,6 +305,8 @@ export class GameOnline2p extends GameBase {
   /**
    * @returns true if the game is waiting for current player to make a move
    */
+
+  /** 
   isCurrentMoveByCurrentPlayer() {
     if (this.gameMode === GAME_MODE.FIRST) {
       return this.currentPlayerId === 0
@@ -404,3 +407,4 @@ export function initGameOnline2p(playerName: string) {
     },
   }
 }
+*/
