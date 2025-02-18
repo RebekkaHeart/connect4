@@ -12,6 +12,7 @@ export class PlayerAi extends Player {
   static readonly MAX_DEPTH = 3
   private ownBoardPieceValue: number
   private enemyBoardPiece: BoardPiece
+  private firstMove: boolean
   constructor(boardPiece: BoardPiece, label: string) {
     super(boardPiece, label)
     this.ownBoardPieceValue = this.getBoardPieceValue(boardPiece)
@@ -19,6 +20,7 @@ export class PlayerAi extends Player {
       boardPiece === BoardPiece.PLAYER_1
         ? BoardPiece.PLAYER_2
         : BoardPiece.PLAYER_1
+    this.firstMove = true
   }
   private getBoardPieceValue(boardPiece: BoardPiece): number {
     return boardPiece === BoardPiece.EMPTY
@@ -229,14 +231,13 @@ export class PlayerAi extends Player {
 
   private randomMove(): number
   {
-    let move = Math.floor( Math.random()* 7)
+    let move = Math.floor( Math.random()* BoardBase.COLUMNS)
    return move
   }
 
   async getAction(board: BoardBase): Promise<number> {
-    let firstMove = true
-    if(firstMove){
-      firstMove = false
+    if(this.firstMove){
+      this.firstMove = false
       return this.randomMove();
     }
     const state = clone(board.map)
