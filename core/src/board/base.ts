@@ -35,6 +35,9 @@ export class BoardBase {
     this.reset()
   }
 
+  whenEnd(){
+    this.startingPlayer = this.startingPlayer == 0 ? 1 : 0
+  }
   reset() {
     this.map = []
     for (let i = 0; i < BoardBase.ROWS; i++) {

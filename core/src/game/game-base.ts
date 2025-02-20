@@ -1,5 +1,8 @@
+import { AsyncLocalStorage } from 'async_hooks'
 import { BoardPiece, BoardBase } from '../board'
 import { Player } from '../player'
+import * as fs from 'fs'
+
 
 export abstract class GameBase<P extends Player = Player> {
   board: BoardBase
@@ -23,6 +26,7 @@ export abstract class GameBase<P extends Player = Player> {
   }
   end() {
     this.reset()
+    this.board.whenEnd()
     this.isGameEnded = true
   }
 

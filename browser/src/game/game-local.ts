@@ -26,7 +26,7 @@ export class GameLocal extends GameBase {
       statusboxBodyGame.textContent = `Dropping ${currentPlayer.boardPiece} disc`
     }
   }
-  /*waitingForMove() {
+  waitingForMove() {
     this.startTime = Date.now();
     if (!this.isMoveAllowed || this.isGameWon) {
       return
@@ -41,15 +41,16 @@ export class GameLocal extends GameBase {
       const currentPlayer = this.players[this.currentPlayerId]
       statusboxBodyPlayer.textContent = `${currentPlayer.label} ${currentPlayer.boardPiece}`
     }
-  }*/
-  afterMove() {
+  }
+
+  afterMove()  {
     if(this.currentPlayerId == 0){
-    const endTime = Date.now();
-    const totalTime = endTime - this.startTime;
-    console.log(`Player ${this.currentPlayerId} took ${totalTime}ms to make a move.`);
-    let storedTimes = localStorage.getItem('times') || '';
-    storedTimes += totalTime + ', ';
-    localStorage.setItem('times', storedTimes);
+      const endTime = Date.now();
+      const totalTime = endTime - this.startTime;
+      console.log(`Player ${this.currentPlayerId} took ${totalTime}ms to make a move.`);
+      let storedTimes = localStorage.getItem('times') || '';
+      storedTimes += totalTime + ', ';
+      localStorage.setItem('times', storedTimes);
     }
   }
 

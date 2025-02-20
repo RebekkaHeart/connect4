@@ -9,7 +9,7 @@ import {
 } from '../utils'
 
 export class PlayerAi extends Player {
-  static readonly MAX_DEPTH = 3
+  static readonly MAX_DEPTH = 1
   private ownBoardPieceValue: number
   private enemyBoardPiece: BoardPiece
   private firstMove: boolean
