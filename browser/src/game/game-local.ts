@@ -110,7 +110,7 @@ export function initGameLocal(
 
   game.start()
   if (statusboxBodyGame) {
-    statusboxBodyGame.textContent = 'Wating for move'
+    statusboxBodyGame.textContent = 'Waiting for move'
   }
 
   if (statusboxBodyPlayer) {
