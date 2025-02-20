@@ -5,7 +5,6 @@ import { Player, PlayerHuman, PlayerAi } from '@kenrick95/c4'
 import { getColumnFromCoord } from '@kenrick95/c4'
 import { showMessage } from '../utils/message'
 import { animationFrame } from '../utils/animate-frame'
-//import * as fs from 'fs';
 
 
 const statusbox = document.querySelector('.statusbox')
@@ -27,7 +26,7 @@ export class GameLocal extends GameBase {
       statusboxBodyGame.textContent = `Dropping ${currentPlayer.boardPiece} disc`
     }
   }
-  waitingForMove() {
+  /*waitingForMove() {
     this.startTime = Date.now();
     if (!this.isMoveAllowed || this.isGameWon) {
       return
@@ -42,7 +41,7 @@ export class GameLocal extends GameBase {
       const currentPlayer = this.players[this.currentPlayerId]
       statusboxBodyPlayer.textContent = `${currentPlayer.label} ${currentPlayer.boardPiece}`
     }
-  }
+  }*/
   afterMove() {
     if(this.currentPlayerId == 0){
     const endTime = Date.now();

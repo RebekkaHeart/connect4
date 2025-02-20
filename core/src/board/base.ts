@@ -23,6 +23,7 @@ export class BoardBase {
   static MESSAGE_X_BEGIN: number
   static MESSAGE_Y_BEGIN: number
   static SCALE: number
+  startingPlayer: number = 0
 
   map: Array<Array<BoardPiece>>
   protected winnerBoardPiece: BoardPiece

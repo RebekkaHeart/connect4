@@ -12,7 +12,7 @@ export abstract class GameBase<P extends Player = Player> {
   constructor(players: Array<P>, board: BoardBase) {
     this.board = board
     this.players = players
-    this.currentPlayerId = 0
+    this.currentPlayerId = board.startingPlayer
     this.reset()
   }
   reset() {
