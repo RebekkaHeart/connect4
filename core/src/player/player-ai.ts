@@ -249,7 +249,14 @@ export class PlayerAi extends Player {
     )
 
     // makes delay so that move isn't instant
-    const rndInt = Math.floor(Math.random() * 5000) + 1 + 4000;
+    let freeColumns = 0;
+    for (let i = 0; i < BoardBase.COLUMNS; i++) {
+      const isFree = state[0][i] == BoardPiece.EMPTY;
+      if (isFree) {
+        freeColumns = freeColumns + 1;
+      }
+    }
+    const rndInt = Math.floor(Math.random() * 1000) + 1 + (1000 * freeColumns);
     await new Promise(f => setTimeout(f, rndInt));
 
     console.log(

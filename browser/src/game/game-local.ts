@@ -44,14 +44,12 @@ export class GameLocal extends GameBase {
     }
   }
   afterMove() {
-    if(this.currentPlayerId == 0){
     const endTime = Date.now();
     const totalTime = endTime - this.startTime;
     console.log(`Player ${this.currentPlayerId} took ${totalTime}ms to make a move.`);
     let storedTimes = localStorage.getItem('times') || '';
     storedTimes += totalTime + ', ';
     localStorage.setItem('times', storedTimes);
-    }
   }
 
   announceWinner(winnerBoardPiece: BoardPiece) {
