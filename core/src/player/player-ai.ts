@@ -9,7 +9,7 @@ import {
 } from '../utils'
 
 export class PlayerAi extends Player {
-  static readonly MAX_DEPTH = 3
+  static readonly MAX_DEPTH = 2
   private ownBoardPieceValue: number
   private enemyBoardPiece: BoardPiece
   private firstMove: boolean
@@ -247,6 +247,11 @@ export class PlayerAi extends Player {
       BIG_NEGATIVE_NUMBER,
       BIG_POSITIVE_NUMBER,
     )
+
+    // makes delay so that move isn't instant
+    const rndInt = Math.floor(Math.random() * 5000) + 1 + 4000;
+    await new Promise(f => setTimeout(f, rndInt));
+
     console.log(
       `AI ${this.boardPiece} choose column ${action.move} with value of ${action.value}`,
     )

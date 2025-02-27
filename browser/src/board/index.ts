@@ -83,11 +83,12 @@ export class Board extends BoardBase {
         strokeStyle: BoardBase.PIECE_STROKE_STYLE,
       })
       this.render()
-      currentY += BoardBase.PIECE_RADIUS
+      currentY += BoardBase.PIECE_RADIUS / 2
     }
     while (newRow * 3 * BoardBase.PIECE_RADIUS >= currentY) {
       await animationFrame()
       doAnimation()
+      await new Promise(resolve => setTimeout(resolve, 20));
     }
   }
 
