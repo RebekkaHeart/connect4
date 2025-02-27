@@ -229,18 +229,49 @@ export class PlayerAi extends Player {
     }
   }
 
-  private randomMove(): number
+  private randomMove(state: Array<Array<BoardPiece>>): number
   {
-    let move = Math.floor( Math.random()* BoardBase.COLUMNS)
-   return move
+    let list = [];
+    for (let i = 2; i < 5; i++) {
+      const isFree = state[5][i] == BoardPiece.EMPTY;
+      if (isFree) {
+        list.push(i);
+      }
+    }
+
+    let index = Math.floor(Math.random() * list.length);
+    return list[index]
+  }
+
+  private delay(state: Array<Array<BoardPiece>>) 
+  {
+    let freeColumns = 0;
+    for (let i = 0; i < BoardBase.COLUMNS; i++) {
+      const isFree = state[1][i] == BoardPiece.EMPTY;
+      if (isFree) {
+        freeColumns = freeColumns + 1;
+      }
+    }
+
+    let freeRowFour = 0;
+    for (let i = 0; i < BoardBase.COLUMNS; i++) {
+      const isFree = state[4][i] == BoardPiece.EMPTY;
+      if (isFree) {
+        freeRowFour = freeRowFour + 1;
+      }
+    }
+
+    const rndInt = Math.floor(Math.random() * 1000) + 1 + (1000 * (freeColumns - freeRowFour));
+    return rndInt;
   }
 
   async getAction(board: BoardBase): Promise<number> {
+    const state = clone(board.map)
+
     if(this.firstMove){
       this.firstMove = false
-      return this.randomMove();
+      return this.randomMove(state);
     }
-    const state = clone(board.map)
     const action = this.maxState(
       state,
       0,
@@ -249,15 +280,7 @@ export class PlayerAi extends Player {
     )
 
     // makes delay so that move isn't instant
-    let freeColumns = 0;
-    for (let i = 0; i < BoardBase.COLUMNS; i++) {
-      const isFree = state[0][i] == BoardPiece.EMPTY;
-      if (isFree) {
-        freeColumns = freeColumns + 1;
-      }
-    }
-    const rndInt = Math.floor(Math.random() * 1000) + 1 + (1000 * freeColumns);
-    await new Promise(f => setTimeout(f, rndInt));
+    await new Promise(f => setTimeout(f, this.delay(state)));
 
     console.log(
       `AI ${this.boardPiece} choose column ${action.move} with value of ${action.value}`,
